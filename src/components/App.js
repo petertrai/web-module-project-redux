@@ -10,9 +10,10 @@ import MovieHeader from './MovieHeader';
 
 import AddMovieForm from './AddMovieForm';
 import FavoriteMovieList from './FavoriteMovieList';
+import { toggleFavorites } from "../actions/favoritesActions";
 
 const App = props => {
-  const displayFavorites = true;
+  const { displayFavorites } = props;
 
   return (
     <div>
@@ -48,4 +49,10 @@ const App = props => {
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return ({
+    displayFavorites: state.favorites.displayFavorites
+  })
+}
+
+export default connect(mapStateToProps, {toggleFavorites})(App);
